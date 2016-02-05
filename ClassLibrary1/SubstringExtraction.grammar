@@ -1,0 +1,19 @@
+reference 'SubstringExtraction.dll';
+
+using System.Text.RegularExpressions;
+using SubstringExtraction;
+
+using semantics SubstringExtraction.Semantics;
+using learners SubstringExtraction.WitnessFunctions;
+
+language SubstringExtraction;
+
+@input string inp;
+
+@start String out := Substring(inp, posPair);
+Tuple<int?, int?> posPair := PositionPair(pos, pos) = Pair(pos, pos);
+int? pos := AbsolutePosition(inp, k) | RegexPosition(inp, positionBoundaries, k);
+Tuple<Regex, Regex> positionBoundaries := RegexPair(r, r) = Pair(r, r);
+
+Regex r;
+int k;
